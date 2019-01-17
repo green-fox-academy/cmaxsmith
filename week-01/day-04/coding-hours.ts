@@ -4,6 +4,6 @@ let daysWeek: number= 5
 let workHours: number= 52
 let hoursCoding: number= hoursDaily*semester*daysWeek
 let totalWork: number=workHours*semester
-console.log(hoursCoding)
-console.log((hoursCoding/totalWork)*100 + '%')
+console.log(hoursCoding);
+console.log((hoursCoding/totalWork)*100 + '%');
 

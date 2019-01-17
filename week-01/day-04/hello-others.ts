@@ -1,5 +1,5 @@
 'use strict'
 
-console.log('Hello Orsi!')
-console.log('Hello Adam!')
-console.log('Hello Danny!')
+console.log('Hello Orsi!');
+console.log('Hello Adam!');
+console.log('Hello Danny!');
