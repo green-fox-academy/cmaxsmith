@@ -36,8 +36,13 @@ let isBonus: boolean = false;
 
 if (credits >= 50 && !isBonus){
     let newBonus: number = c-2
-    console.log(newBonus)
- };
+    console.log('The bonus is ' + newBonus)}
+     else if (credits < 50 && !isBonus){
+     let newBonus: number= c-1
+     console.log('The bonus is ' + newBonus)}
+     else if (isBonus){
+         console.log('The bonus is ' + c)};
+
 
 // if credits are at least 50,
 // and is_bonus is false decrement c by 2
@@ -45,11 +50,18 @@ if (credits >= 50 && !isBonus){
 // and is_bonus is false decrement c by 1
 // if is_bonus is true c should remain the same
 
-console.log(c);
-
 let d: number =  8;
 let time: number = 120;
 let out3: string = '';
+
+if (d%4===0 && time<=200){
+    out3 = "check";
+    console.log(out3)
+} else if (time>200){
+    out3 = "Time Out";
+    console.log(out3)
+} else {out3 = "Run Forest Run!"
+console.log(out3)};
 
 // if d is dividable by 4
 // and time is not more than 200
@@ -57,5 +69,3 @@ let out3: string = '';
 // if time is more than 200
 // set out3 to "Time out"
 // otherwise set out3 to "Run Forest Run!"
-
-console.log(out3);
