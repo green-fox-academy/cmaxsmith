@@ -1,7 +1,7 @@
 'use strict'
 export{}
 
-let lineCount: number = 8
+let lineCount: number = 9
 let ast: any = "*";
 let buffer: any = " ";
 let astStart: number = 1;
