@@ -3,7 +3,7 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-let numberOfLines: number = 12;
+let numberOfLines: number = 20;
 let emptySpace: number = canvas.height/numberOfLines/2;
 let midPoint: number [] = [canvas.height/2, canvas.width/2];
 
