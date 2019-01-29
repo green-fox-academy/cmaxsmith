@@ -1,5 +1,5 @@
 'use strict'
 export {};
 
-let myFox: any = 'megalotis ';
+let myFox: string = 'megalotis ';
 console.log(myFox.repeat(3));
