@@ -12,11 +12,13 @@ export class Sharpie {
   color: string;
   width: number;
   inkAmount: number;
+  usable: boolean;
 
   public constructor (color, width, inkAmount = 100) {
     this.color = color;
     this.width = width;
     this.inkAmount = inkAmount;
+    this.usable
   }
 
   useSharpie () {
@@ -30,4 +32,4 @@ const sharpie1: Sharpie = new Sharpie ('black', 5, undefined)
 //test out the function
 sharpie1.useSharpie()
 
-console.log(sharpie1);
+// console.log(sharpie1);
