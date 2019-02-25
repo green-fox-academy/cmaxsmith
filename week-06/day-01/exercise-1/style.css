@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: 700px;
+  
+}
+
+.item {
+  width: 100%;
+
+}
+
+.green {
+  background: rgb(20, 170, 20);
+  flex-grow: 1;
+  order: 1;
+}
+
+.yellow {
+  background: rgb(255, 238, 4);
+  flex-grow: 3;
+  order: 3;
+}
+
+.purple {
+  background: rgb(172, 34, 226);
+  flex-grow: 2;
+  order: 2;
+}
