@@ -1,3 +1,31 @@
-body {
-  color: blue;
+table {
+  margin: solid black 1px;
+  font-family: Arial, Helvetica, sans-serif
 }
+.heading {
+  background-color: black;
+  color: white;
+}
+
+.drinkNameo {
+  background-color: yellow;
+  color: black;
+}
+
+.priceName {
+  background-color: gray;
+  font-size: 16px;
+}
+
+.containList {
+  font-size: 12px;
+
+}
+
+
+.noAlc {
+  font-size: 12px;
+}
+
+
+

@@ -9,8 +9,32 @@
     <h2> <%= alcoholList %></h2>
 
    <% cocktailsList.forEach((drink) => { %>
-      <p> <%=drink.name + ','+  drink.price + ',' + drink.contains + ',' + drink.isAlcoholic %> </p> 
+      <p> <%=drink.name %> </p> 
      <% }) %>
+
+     <table id="drinks">
+       <tr class="heading">
+         <th> Name</th>
+         <th> Price</th>
+       </tr>
+      
+        <% cocktailsList.forEach((drink) => { %>
+          <% if (drink.isAlcoholic === true)  {%>
+          <tr> 
+          <td class=drinkName> <%=drink.name %> <br><span class=containList> <%=drink.contains %> </span>
+            <td class=priceName> <%=drink.price %></td>
+          </td>
+        </tr>
+       <% } else { %>
+        <tr> 
+            <td class=drinkName> <%=drink.name %> <span class=noAlc>(non-alcoholic) </span><br><span class=containList> <%=drink.contains %> </span> 
+              <td class=priceName> <%=drink.price %></td>
+            </td>
+          </tr>
+       <% }}) %>
+
+      </tr>
+     </table>
 
   </body>
 </html>
