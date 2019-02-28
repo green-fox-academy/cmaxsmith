@@ -1,0 +1,75 @@
+body {
+  background: #eee;
+
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+
+}
+
+.flex-container {
+  display: flex;
+  background: #fff;
+  flex-wrap: wrap;
+
+}
+
+.box {
+  height: 100px;
+  flex: 1 0 200px;
+}
+
+.one {
+  background: red;
+}
+
+.two {
+  background: blue;
+}
+
+.three{
+  background: green;
+}
+
+nav {
+  background: #333;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav a{
+  text-decoration: none;
+  text-align: center;
+  color:#fff;
+  display: block;
+  padding: 10px;
+}
+
+nav a:hover {
+  background-color: #555;
+}
+
+a.tw{
+}
+
+@media screen and (min-width: 768px) {
+
+  nav ul {
+    display: flex;
+    justify-content: flex-start;
+  }
+  nav li {
+    flex: 1 1 0;
+  }
+
+  nav {
+    display: flex;
+    justify-content:  space-between;
+  }
+}
