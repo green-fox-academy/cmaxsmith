@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Gallery Project</title>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery Project</title>
   <link rel="stylesheet" href="style.css" type="text/css">
-  </head>
-  <body>
-  
+</head>
 
-    <script src="gallery.js"></script>
-  </body>
+<body>
+  <div class="carousel-container">
+    <div class="rightnav hoverchange" onclick="setClassValue()">
+      <img src="assets/forward-arrow.png">
+    </div>
+    <div class="leftnav hoverchange">
+      <img src="assets/back-arrow.png">
+    </div>
+    <div class="carousel">
+      <img src="assets/mountains.jpg">
+      <img src="assets/city.jpg">
+      <img src="assets/field.jpg">
+      <img src="assets/germany.jpg" class="current">
+    </div>
+  </div>
+  <div class="thumbnails">
+    <img src="assets/mountains.jpg">
+    <img src="assets/city.jpg">
+    <img src="assets/field.jpg">
+    <img src="assets/germany.jpg">
+  </div>
+  </div>
+
+
+
+  <script src="gallery.js"></script>
+</body>
+
 </html>
-
