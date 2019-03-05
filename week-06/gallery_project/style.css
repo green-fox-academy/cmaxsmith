@@ -67,18 +67,23 @@ body{
 
 .thumbnails {
   border: 2px solid purple;
-  display: inline-flex;
+  display: flex;
   width: 75vw;
   flex-flow: row;
   position: relative;
   justify-content: space-around;
-  flex-wrap: wrap;
+  
 }
 
 img, .thumbnails {
-  height: 10vw;
+  height: 10vh;
+  width: 75vh;
+  object-fit: cover;
+  display: inline-flex;
   overflow: hidden;
 
 }
+
+
 
 
