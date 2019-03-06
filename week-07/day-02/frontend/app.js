@@ -15,9 +15,7 @@ app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`)
 })
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+
 
 app.get('/doubling', (req, res) => {
   res.writeHead(200, {'Content-Type' : 'application/json'});
@@ -65,11 +63,11 @@ app.get('/greeter', (req, res) => {
 })
 
 app.get('/appenda/:appendable?', (req, res) => {
-  res.writeHead(200, {'Content-Type' : 'application/json'});
   if (req.params.appendable === undefined) {
     res.status(404).send('Error! Page not found')
   } else {
-  const string = req.params.appendable;
+    res.writeHead(200, {'Content-Type' : 'application/json'});
+    const string = req.params.appendable;
   let myObject = {
     appended: string + 'a'
     }
@@ -92,4 +90,18 @@ app.post('/dountil/:action', (req, res) => {
     }
   }
   res.send(output)
+})
+
+app.post('/testing', (req, res) => {
+let firstNum = req.body.num1;
+let secondNum = req.body.num2;
+let sumOfNums = {
+  result: firstNum + secondNum
+}
+
+let sumOfNumsParse = firstNum + secondNum;
+
+res.json(sumOfNums)
+res.end('result2 is ' + JSON.stringify(sumOfNumsParse))
+res.send('result1 is ' + JSON.stringify(sumOfNumsParse))
 })
