@@ -14,16 +14,16 @@ for (let i = 0; i < articles.length; i++){
   let currentDiv = document.getElementById(i);
   currentDiv.appendChild(newHead)
   let newParagraph = document.createElement('p');
+  let newLink = document.createElement('a')
+  newLink.href=articles[i].web_url;
+  currentDiv.appendChild(newLink)
+  newLink.innerHTML="view article"
   currentDiv.appendChild(newHead2)
   currentDiv.appendChild(newParagraph)
   newHead.innerHTML=articles[i].headline.print_headline
-  newParagraph.innerHTML=articles[i].snippet
+  newParagraph.innerHTML=articles[i].snippet + '<hr></hr>'
   let pubDate = articles[i].pub_date;
   newHead2.innerHTML=pubDate.substr(0,10)
-  let newLink = document.createElement('a')
-  newLink.href=articles[i].web_url;
-  newLink.innerHTML="view article"
-  currentDiv.appendChild(newLink)
 }
 
 }
