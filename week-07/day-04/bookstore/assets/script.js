@@ -15,8 +15,11 @@ ourRequest.onload = function() {
     newbookname.innerHTML = ourData[i].book_name;
     newauthorname.innerHTML = ourData[i].aut_name;
     newcategory.innerHTML = ourData[i].cate_descrip;
+    newcategory.className = "visible category"
     newpublisher.innerHTML = ourData[i].pub_name;
+    newpublisher.className = "visible publisher"
     newprice.innerHTML = ourData[i].book_price;
+    newprice.className = "visible price";
     tableBody.appendChild(newtr).appendChild(newbookname);
     tableBody.appendChild(newtr).appendChild(newauthorname);
     tableBody.appendChild(newtr).appendChild(newcategory);
@@ -26,15 +29,23 @@ ourRequest.onload = function() {
     
   }
 }
-
 ourRequest.send()
 
-// let tableBody = document.querySelector('tbody')
-// let newtr = document.createElement('tr');
-// let newtd = document.createElement('td')
-// newtd.innerHTML="i work!"
-// tableBody.appendChild(newtr).appendChild(newtd)
-// newtd.innerHTML="i also work!"
-// tableBody.appendChild(newtr).appendChild(newtd)
+let params = (new URL(document.location)).searchParams;
 
-// 
+let categoryQ= params.get("category");
+let publisherQ = params.get("publisher");
+let pltQ = params.get("plt");
+let pgt = params.get("pgt")
+
+
+let catList = document.getElementsByClassName('category');
+catList.forEach(element => {console.log(element)
+});
+
+let pubList = document.getElementsByClassName('publisher');
+console.log(pubList)
+
+let priceList = document.getElementsByClassName('price');
+console.log(priceList)
+
