@@ -64,6 +64,7 @@ app.get('/sortByTimeAsc', (req, res)=> {
 })
 
 app.get('/sortByPopAsc', (req, res)=> {
+  
   conn.query(`SELECT * FROM posts ORDER BY score asc`, (err, rows) => {
     if (err) {
       console.log(err);
@@ -85,4 +86,16 @@ app.get('/sortByPopDesc', (req, res)=> {
   })
 })
 
+//   // conn.query(`UPDATE posts SET score = score + 1 WHERE post_id = ${post_id}`)
 
+app.put('/upvote/:id', (req, res) => {
+  let post_id = req.params.id;
+  conn.query(`UPDATE posts SET score = score + 1 WHERE post_id = ${post_id}`)
+  res.end()
+})
+
+app.put('/downvote/:id', (req, res) => {
+  let post_id = req.params.id;
+  conn.query(`UPDATE posts SET score = score - 1 WHERE post_id = ${post_id}`)
+  res.end()
+})
