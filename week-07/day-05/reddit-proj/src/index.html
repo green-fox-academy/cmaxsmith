@@ -6,14 +6,19 @@
   <link rel="stylesheet" href="assets/style.css" type="text/css">
   </head>
   <body>
-    <button id="time-desc">Sort by Newest</button>
-    <button id="time-asc">Sort By Oldest</button>
-    <button id="pop-desc">Most Popular</button>
-    <button id="pop-asc">Least Popular</button>
     <h1>Reddit Front Page</h1>
-
+    <div class="category_sort">
+      <button id="time-desc">Sort by Newest</button>
+      <button id="time-asc">Sort By Oldest</button>
+      <button id="pop-desc">Most Popular</button>
+      <button id="pop-asc">Least Popular</button>
     </div>
-  
+    <button id="post_create">Submit a new Post</button>
+    <form action="/makepost" method="post" enctype="multipart/form-data"">
+      <input name="title" id="title">
+      <input name="content" id="content">
+      <input type="submit">
+    </form>
     <script src="assets/script.js"></script>
   </body>
 </html>

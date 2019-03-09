@@ -99,3 +99,11 @@ app.put('/downvote/:id', (req, res) => {
   conn.query(`UPDATE posts SET score = score - 1 WHERE post_id = ${post_id}`)
   res.end()
 })
+
+app.post('/makepost', (req, res)=> {
+  let title = req.body.title
+  let content = req.body.content;
+  console.log(title)
+  res.end()
+})
+

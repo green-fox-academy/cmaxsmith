@@ -60,25 +60,26 @@ function pageLoad(currentSource) {
   postRequest.send();
 }
 
+let currentLink = `http://localhost:3000/posts`
 pageLoad('http://localhost:3000/posts')
 
-function sortByTime(category, order) {
-  pageLoad(`http://localhost:3000/sortBy${category}${order}`)
+function sortByCategory(category, order) {
+  currentLink = `http://localhost:3000/sortBy${category}${order}`
+  pageLoad(currentLink)
 }
 
+
 let timeDescBtn = document.getElementById('time-desc')
-timeDescBtn.addEventListener("click", () => sortByTime('time', 'desc'))
+timeDescBtn.addEventListener("click", () => sortByCategory('time', 'desc'))
 
 let timeAscBtn = document.getElementById('time-asc')
-timeAscBtn.addEventListener("click", () => sortByTime('time', 'asc'))
+timeAscBtn.addEventListener("click", () => sortByCategory('time', 'asc'))
 
 let leastPopBtn = document.getElementById('pop-asc')
-leastPopBtn.addEventListener("click", () => sortByTime('pop', 'asc'))
+leastPopBtn.addEventListener("click", () => sortByCategory('pop', 'asc'))
 
 let mostPopBtn = document.getElementById('pop-desc')
-mostPopBtn.addEventListener("click", () => sortByTime('pop', 'desc'))
-
-let testButton = document.getElementById('test');
+mostPopBtn.addEventListener("click", () => sortByCategory('pop', 'desc'))
 
 
 function upVote (post_id) {
