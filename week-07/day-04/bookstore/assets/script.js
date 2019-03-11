@@ -40,8 +40,6 @@ let pgt = params.get("pgt")
 
 
 let catList = document.getElementsByClassName('category');
-catList.forEach(element => {console.log(element)
-});
 
 let pubList = document.getElementsByClassName('publisher');
 console.log(pubList)

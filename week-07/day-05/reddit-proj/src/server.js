@@ -103,7 +103,7 @@ app.put('/downvote/:id', (req, res) => {
 app.post('/makepost', (req, res)=> {
   let title = req.body.title
   let content = req.body.content;
-  console.log(title)
+  console.log(title, content)
   res.end()
-})
+})  
 

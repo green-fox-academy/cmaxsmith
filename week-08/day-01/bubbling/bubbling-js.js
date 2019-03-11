@@ -27,16 +27,16 @@ let navTag = document.querySelector(`nav`);
 
 navTag.addEventListener(`click`, (e) => {
   if (e.target.dataset.direction ===  'right') {
-    posX += 10
-    myImage.style.backgroundPosition = `${posX}px ${posY}px`
-  } else if (e.target.dataset.direction ===  'left') {
     posX -= 10
     myImage.style.backgroundPosition = `${posX}px ${posY}px`
+  } else if (e.target.dataset.direction ===  'left') {
+    posX += 10
+    myImage.style.backgroundPosition = `${posX}px ${posY}px`
   } else if (e.target.dataset.direction ===  'up') {
-    posY -= 10
+    posY += 10
     myImage.style.backgroundPosition = `${posX}px ${posY}px` 
   } else if (e.target.dataset.direction ===  'down') {
-    posY += 10
+    posY -= 10
     myImage.style.backgroundPosition = `${posX}px ${posY}px`
   } else if (e.target.dataset.direction ===  'in') {
     currentRatio *= 1.1;

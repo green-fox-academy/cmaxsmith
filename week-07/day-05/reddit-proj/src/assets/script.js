@@ -108,3 +108,42 @@ function downVote (post_id) {
   http.send()
 }
 
+// const addForm = document.forms['testForm']
+// addForm.addEventListener("submit", function(e){
+//   e.preventDefault()
+//   const title = addForm.querySelector('#title').value;
+//   const content = addForm.querySelector('#content').value;
+
+//   console.log(title, content)
+// })
+
+const addForm = document.forms['testForm']
+addForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  let formData = new FormData(this);
+  let parsedData = {};
+  for(let name of formData) {
+    if (typeof(parsedData[title[0]]) == "undefined") {
+      let tempdata = formData.getAll(title[0]);
+      if (tempdata.length > 1) {
+        parsedData[title[0]] = tempdata;
+      } else {
+        parsedData[title[0]] = tempdata[0];
+      }
+    }
+  }
+
+  let options = {};
+  switch (this.method.toLowerCase()) {
+    case 'post':
+      options.body = JSON.stringify(parsedData);
+    case 'get':
+      options.method = this.method;
+      options.headers = {'Content-Type': 'application/json'};
+    break;
+  }
+
+  fetch(this.action, options).then(r => r.json()).then.then(data => {
+    console.log(data);
+  });
+});
