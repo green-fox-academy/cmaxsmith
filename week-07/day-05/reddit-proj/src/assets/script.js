@@ -17,6 +17,8 @@ function pageLoad(currentSource) {
       let newDiv = document.createElement('div');
       newDiv.className = "posts";
       newDiv.id = post.post_id;
+      let contentDiv= document.createElement('div')
+      contentDiv.className="contentDiv";
       let newFooter = document.createElement('div');
       newFooter.className = "footer";
       let newTitle = document.createElement('h2');
@@ -36,13 +38,11 @@ function pageLoad(currentSource) {
       let newScoreVal = document.createElement('div');
       newScoreVal.className = "score_value";
       newScoreVal.innerText = `${post.score}`;
-      let newUpVote = document.createElement('button');
+      let newUpVote = document.createElement('div');
       newUpVote.className = "upvote";
-      newUpVote.innerText = "up-vote";
       newUpVote.addEventListener("click", ()=> upVote(`${post.post_id}`))
-      let newDownVote = document.createElement('button');
-      newDownVote.classname = "downvote";
-      newDownVote.innerText = "down-vote";
+      let newDownVote = document.createElement('div');
+      newDownVote.className = "downvote";
       newDownVote.addEventListener("click", ()=> downVote(`${post.post_id}`));
       let newDelete = document.createElement('button');
       newDelete.className="deleteBtn";
@@ -51,13 +51,16 @@ function pageLoad(currentSource) {
         alert('You are deleting this post')
         deletePost(`${post.post_id}`)
       })
-      post_container.appendChild(newDiv).appendChild(newTitle);
+      // post_container.appendChild(newDiv).appendChild(newTitle);
+      post_container.appendChild(newDiv)
       newDiv.appendChild(newScoreDiv);
+      newDiv.appendChild(contentDiv);
+      contentDiv.appendChild(newTitle )
       newScoreDiv.appendChild(newScoreVal);
       newScoreDiv.appendChild(newUpVote);
       newScoreDiv.appendChild(newDownVote)
-      newDiv.appendChild(newContent);
-      newDiv.appendChild(newFooter);
+      contentDiv.appendChild(newContent);
+      contentDiv.appendChild(newFooter);
       newFooter.appendChild(newUserLink);
       newFooter.appendChild(newTime);
       newFooter.appendChild(newDelete)

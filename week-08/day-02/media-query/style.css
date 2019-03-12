@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  
+}
+
+.item {
+  height: 100px;
+}
+
+.green {
+  background: rgb(20, 170, 20);
+  flex-grow: 1;
+  order: 1;
+}
+
+.yellow {
+  background: rgb(255, 238, 4);
+  flex-grow: 2;
+  order: 2;
+}
+
+.purple {
+  background: rgb(172, 34, 226);
+  order: 3;
+  flex-grow: 1;
+}
+
+@media (max-width: 500px){
+  .container {
+    flex-direction: column;
+  }
+}

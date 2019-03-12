@@ -7,10 +7,12 @@
       }
     </style>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">.
     <title>Candy shop</title>
   </head>
   <body>
-    <h1>🍬Candy shop🍬</h1>
+    <div class="candy-container">
+        <h1>🍬Candy shop🍬</h1>
       <dl class="stats">
       <dt>Candies</dt>
       <dd class="candies">0</dd>
@@ -19,9 +21,12 @@
       <dt>Candies / Second</dt>
       <dd class="speed">0</dd>
     </dl>
-    <button class="create-candies">Create candies</button>
-    <button class="buy-lollypops">Buy Lollypops</button>
-    <button class="candy-machine">Make candy rain</button>
+  </div>
+    <div class="candy-buttons">
+      <button class="create-candies">Create candies</button>
+      <button class="buy-lollypops">Buy Lollypops</button>
+      <button class="candy-machine">Make it rain</button>
+    </div>
     <script src="candies.js"></script>
   </body>
 </html>
