@@ -112,11 +112,12 @@ app.put('/makepost', (req, res)=> {
   } else {
     console.log('try again')
     }
-  console.log('you clicked post')
   res.end()
 })  
 
-app.put('/deletepost', (req, res)=> {
-
+app.put('/deletepost/', (req, res)=> {
+  let post_id = req.body.id;
+  conn.query(`DELETE from posts WHERE post_id = '${post_id}';`)
+  res.end()
 })
 

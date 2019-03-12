@@ -48,6 +48,7 @@ function pageLoad(currentSource) {
       newDelete.className="deleteBtn";
       newDelete.innerText="delete post";
       newDelete.addEventListener("click", ()=> {
+        alert('You are deleting this post')
         deletePost(`${post.post_id}`)
       })
       post_container.appendChild(newDiv).appendChild(newTitle);
@@ -119,6 +120,7 @@ function downVote (post_id) {
 let submitBtn = document.getElementById("submit_post")
 submitBtn.addEventListener("click", (e)=>{
   e.preventDefault()
+  let form = document.getElementById('newPost')
   let title = document.getElementById('title').value;
   let content = document.getElementById('content').value;
   let http = new XMLHttpRequest();
@@ -127,10 +129,17 @@ submitBtn.addEventListener("click", (e)=>{
   http.setRequestHeader("Content-Type", "application/json")
   http.send(JSON.stringify({"title" : `${title}`, 
   "content" : `${content}`}))
+  alert('post submitted')
+  form.reset();
+  
 })
 
 function deletePost(post_id) {
-
+  let http = new XMLHttpRequest();
+  let url = `http://localhost:3000/deletepost/`;
+  http.open('PUT', url);
+  http.setRequestHeader("Content-Type", "application/json");
+  http.send(JSON.stringify({"id" : `${post_id}`}));
 }
 
 
