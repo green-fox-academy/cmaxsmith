@@ -4,6 +4,10 @@ const app = express();
 const PORT = 3000;
 const mysql = require('mysql');
 const path = require('path');
+// const bodyParser = require('body-parser')
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.json());
 app.use('/assets', express.static('assets'));
@@ -100,10 +104,19 @@ app.put('/downvote/:id', (req, res) => {
   res.end()
 })
 
-app.post('/makepost', (req, res)=> {
-  let title = req.body.title
+app.put('/makepost', (req, res)=> {
+  let title = req.body.title;
   let content = req.body.content;
-  console.log(title, content)
+  if (title !== '' && content !== '') {
+    conn.query(`insert into posts (post_title, content, user_id) values ('${title}', '${content}', 'anonymous');`)
+  } else {
+    console.log('try again')
+    }
+  console.log('you clicked post')
   res.end()
 })  
+
+app.put('/deletepost', (req, res)=> {
+
+})
 

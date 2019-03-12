@@ -43,7 +43,13 @@ function pageLoad(currentSource) {
       let newDownVote = document.createElement('button');
       newDownVote.classname = "downvote";
       newDownVote.innerText = "down-vote";
-      newDownVote.addEventListener("click", ()=> downVote(`${post.post_id}`))
+      newDownVote.addEventListener("click", ()=> downVote(`${post.post_id}`));
+      let newDelete = document.createElement('button');
+      newDelete.className="deleteBtn";
+      newDelete.innerText="delete post";
+      newDelete.addEventListener("click", ()=> {
+        deletePost(`${post.post_id}`)
+      })
       post_container.appendChild(newDiv).appendChild(newTitle);
       newDiv.appendChild(newScoreDiv);
       newScoreDiv.appendChild(newScoreVal);
@@ -53,6 +59,7 @@ function pageLoad(currentSource) {
       newDiv.appendChild(newFooter);
       newFooter.appendChild(newUserLink);
       newFooter.appendChild(newTime);
+      newFooter.appendChild(newDelete)
       console.log
 
     });
@@ -108,42 +115,23 @@ function downVote (post_id) {
   http.send()
 }
 
-// const addForm = document.forms['testForm']
-// addForm.addEventListener("submit", function(e){
-//   e.preventDefault()
-//   const title = addForm.querySelector('#title').value;
-//   const content = addForm.querySelector('#content').value;
 
-//   console.log(title, content)
-// })
+let submitBtn = document.getElementById("submit_post")
+submitBtn.addEventListener("click", (e)=>{
+  e.preventDefault()
+  let title = document.getElementById('title').value;
+  let content = document.getElementById('content').value;
+  let http = new XMLHttpRequest();
+  let URL = "http://localhost:3000/makepost"
+  http.open("PUT", URL);
+  http.setRequestHeader("Content-Type", "application/json")
+  http.send(JSON.stringify({"title" : `${title}`, 
+  "content" : `${content}`}))
+})
 
-const addForm = document.forms['testForm']
-addForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  let formData = new FormData(this);
-  let parsedData = {};
-  for(let name of formData) {
-    if (typeof(parsedData[title[0]]) == "undefined") {
-      let tempdata = formData.getAll(title[0]);
-      if (tempdata.length > 1) {
-        parsedData[title[0]] = tempdata;
-      } else {
-        parsedData[title[0]] = tempdata[0];
-      }
-    }
-  }
+function deletePost(post_id) {
 
-  let options = {};
-  switch (this.method.toLowerCase()) {
-    case 'post':
-      options.body = JSON.stringify(parsedData);
-    case 'get':
-      options.method = this.method;
-      options.headers = {'Content-Type': 'application/json'};
-    break;
-  }
+}
 
-  fetch(this.action, options).then(r => r.json()).then.then(data => {
-    console.log(data);
-  });
-});
+
+
