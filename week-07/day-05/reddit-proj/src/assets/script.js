@@ -14,21 +14,31 @@ function pageLoad(currentSource) {
     let postData = JSON.parse(postRequest.responseText);
     postData.forEach(post => {
       const post_container = document.getElementById('post_container');
-      let newDiv = document.createElement('div');
+      let newDiv = document.createElement("div")
       newDiv.className = "posts";
       newDiv.id = post.post_id;
       let innerCard = document.createElement('div');
       innerCard.className="innerCard";
       let frontCard = document.createElement('div');
-      frontCard.className ="frontCard visible";
+      frontCard.className ="frontCard";
       let backCard = document.createElement('div');
-      backCard.className = "backCard hidden"
+      backCard.className = "backCard"
       let contentDiv= document.createElement('div')
       contentDiv.className="contentDiv";
       let contentDivB= document.createElement('div')
       contentDivB.className="contentDivBack";
       let newFooter = document.createElement('div');
       newFooter.className = "footer";
+      let flipDiv = document.createElement('div')
+      flipDiv.className = "flipDiv"
+      flipDiv.addEventListener("click", () => {
+        innerCard.classList.toggle('do-flip')
+      })
+      let flipDivB = document.createElement('div')
+      flipDivB.className = "flipDivB"
+      flipDivB.addEventListener("click", () => {
+        innerCard.classList.toggle('do-flip')
+      })
       let newTitle = document.createElement('h2');
       newTitle.className = "postTitle";
       newTitle.innerText = post.post_title;
@@ -55,10 +65,10 @@ function pageLoad(currentSource) {
       let newDelete = document.createElement('button');
       newDelete.className="deleteBtn";
       newDelete.innerText="delete post";
-      newDelete.addEventListener("click", ()=> {
-        alert('You are deleting this post')
-        deletePost(`${post.post_id}`)
-      })
+      // newDelete.addEventListener("click", ()=> {
+      //   alert('You are deleting this post')
+      //   deletePost(`${post.post_id}`)
+      // })
       post_container.appendChild(newDiv);
       newDiv.appendChild(innerCard);
       innerCard.appendChild(frontCard);
@@ -67,6 +77,7 @@ function pageLoad(currentSource) {
       newScoreDiv.appendChild(newDownVote);
       newScoreDiv.appendChild(newScoreVal);
       frontCard.appendChild(contentDiv);
+      frontCard.appendChild(flipDiv);
       contentDiv.appendChild(newTitle);
       contentDiv.appendChild(newFooter);
       newFooter.appendChild(newUserLink);
@@ -76,6 +87,8 @@ function pageLoad(currentSource) {
       innerCard.appendChild(backCard);
       backCard.appendChild(contentDivB);
       contentDivB.appendChild(newContent)
+      backCard.appendChild(flipDivB)
+    
 
 
       // post_container.appendChild(newDiv)
@@ -102,6 +115,8 @@ function sortByCategory(category, order) {
   currentLink = `http://localhost:3000/sortBy${category}${order}`
   pageLoad(currentLink)
 }
+
+
 
 
 let timeDescBtn = document.getElementById('time-desc')
