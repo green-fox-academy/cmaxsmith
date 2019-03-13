@@ -17,8 +17,16 @@ function pageLoad(currentSource) {
       let newDiv = document.createElement('div');
       newDiv.className = "posts";
       newDiv.id = post.post_id;
+      let innerCard = document.createElement('div');
+      innerCard.className="innerCard";
+      let frontCard = document.createElement('div');
+      frontCard.className ="frontCard visible";
+      let backCard = document.createElement('div');
+      backCard.className = "backCard hidden"
       let contentDiv= document.createElement('div')
       contentDiv.className="contentDiv";
+      let contentDivB= document.createElement('div')
+      contentDivB.className="contentDivBack";
       let newFooter = document.createElement('div');
       newFooter.className = "footer";
       let newTitle = document.createElement('h2');
@@ -51,21 +59,37 @@ function pageLoad(currentSource) {
         alert('You are deleting this post')
         deletePost(`${post.post_id}`)
       })
-      // post_container.appendChild(newDiv).appendChild(newTitle);
-      post_container.appendChild(newDiv)
-      newDiv.appendChild(newScoreDiv);
-      newDiv.appendChild(contentDiv);
-      contentDiv.appendChild(newTitle )
-      newScoreDiv.appendChild(newScoreVal);
+      post_container.appendChild(newDiv);
+      newDiv.appendChild(innerCard);
+      innerCard.appendChild(frontCard);
+      frontCard.appendChild(newScoreDiv);
       newScoreDiv.appendChild(newUpVote);
-      newScoreDiv.appendChild(newDownVote)
-      contentDiv.appendChild(newContent);
+      newScoreDiv.appendChild(newDownVote);
+      newScoreDiv.appendChild(newScoreVal);
+      frontCard.appendChild(contentDiv);
+      contentDiv.appendChild(newTitle);
       contentDiv.appendChild(newFooter);
       newFooter.appendChild(newUserLink);
       newFooter.appendChild(newTime);
-      newFooter.appendChild(newDelete)
-      console.log
+      newFooter.appendChild(newDelete);
 
+      innerCard.appendChild(backCard);
+      backCard.appendChild(contentDivB);
+      contentDivB.appendChild(newContent)
+
+
+      // post_container.appendChild(newDiv)
+      // newDiv.appendChild(newScoreDiv);
+      // newDiv.appendChild(contentDiv);
+      // contentDiv.appendChild(newTitle )
+      // newScoreDiv.appendChild(newScoreVal);
+      // newScoreDiv.appendChild(newUpVote);
+      // newScoreDiv.appendChild(newDownVote)
+      // contentDiv.appendChild(newContent);
+      // contentDiv.appendChild(newFooter);
+      // newFooter.appendChild(newUserLink);
+      // newFooter.appendChild(newTime);
+      // newFooter.appendChild(newDelete)
     });
   }
   postRequest.send();
