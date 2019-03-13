@@ -34,10 +34,14 @@ function pageLoad(currentSource) {
       flipDiv.addEventListener("click", () => {
         innerCard.classList.toggle('do-flip')
       })
+      flipDiv.addEventListener("click", ()=> {commentLoader(post.post_id)})
       let flipDivB = document.createElement('div')
       flipDivB.className = "flipDivB"
       flipDivB.addEventListener("click", () => {
         innerCard.classList.toggle('do-flip')
+      })
+      flipDivB.addEventListener("click", ()=>{
+        commentDeleter(post.post_id)
       })
       let newTitle = document.createElement('h2');
       newTitle.className = "postTitle";
@@ -65,10 +69,9 @@ function pageLoad(currentSource) {
       let newDelete = document.createElement('button');
       newDelete.className="deleteBtn";
       newDelete.innerText="delete post";
-      // newDelete.addEventListener("click", ()=> {
-      //   alert('You are deleting this post')
-      //   deletePost(`${post.post_id}`)
-      // })
+      newDelete.addEventListener("click", ()=> {
+        deletePost(`${post.post_id}`)
+      })
       post_container.appendChild(newDiv);
       newDiv.appendChild(innerCard);
       innerCard.appendChild(frontCard);
@@ -171,8 +174,8 @@ submitBtn.addEventListener("click", (e)=>{
   http.setRequestHeader("Content-Type", "application/json")
   http.send(JSON.stringify({"title" : `${title}`, 
   "content" : `${content}`}))
-  alert('post submitted')
   form.reset();
+  pageLoad(currentLink)
   
 })
 
@@ -182,7 +185,17 @@ function deletePost(post_id) {
   http.open('PUT', url);
   http.setRequestHeader("Content-Type", "application/json");
   http.send(JSON.stringify({"id" : `${post_id}`}));
+  pageLoad(currentLink)
 }
 
+function commentLoader(post_id) {
+  let commentDiv = document.createElement('div');
+  commentDiv.id = "commentDiv";
+  document.body.appendChild(commentDiv);
+  alert('it worked!')
+}
 
-
+function commentDeleter(post_id) {
+  let comments = document.getElementById("commentDiv")
+  comments.parentNode.removeChild(comments)
+}
