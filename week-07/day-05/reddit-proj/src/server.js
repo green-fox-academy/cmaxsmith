@@ -121,3 +121,23 @@ app.put('/deletepost/', (req, res)=> {
   res.end()
 })
 
+app.put('/addcomment', (req, res)=> {
+  let content = req.body.content;
+  let post_id = req.body.post_id
+  console.log(post_id, content)
+    conn.query(`insert into comments (comment, post_id) values ("${content}", "${post_id}");`)
+    console.log('your comment has been added')
+  res.end();
+})
+
+app.get('/displaycomments/:post_id' ,(req, res)=> {
+  let post_id = req.params.post_id;
+  conn.query(`SELECT * FROM comments WHERE post_id = "${post_id}";`, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return
+    }
+    res.send(rows);
+  })
+})

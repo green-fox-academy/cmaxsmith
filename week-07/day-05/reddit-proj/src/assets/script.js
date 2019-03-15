@@ -7,7 +7,9 @@ function pageLoad(currentSource) {
   }
   let newPostContainer = document.createElement('div')
   newPostContainer.id = "post_container";
-  document.body.appendChild(newPostContainer)
+  let centeredDiv = document.getElementById('centered')
+  centeredDiv.appendChild(newPostContainer)
+  // document.body.appendChild(newPostContainer)
   let postRequest = new XMLHttpRequest();
   postRequest.open('GET', currentSource, true)
   postRequest.onload = function () {
@@ -33,15 +35,15 @@ function pageLoad(currentSource) {
       flipDiv.className = "flipDiv"
       flipDiv.addEventListener("click", () => {
         innerCard.classList.toggle('do-flip')
+        commentDisplay();
+        formCreator(post.post_id);
       })
-      flipDiv.addEventListener("click", ()=> {commentLoader(post.post_id)})
       let flipDivB = document.createElement('div')
       flipDivB.className = "flipDivB"
       flipDivB.addEventListener("click", () => {
         innerCard.classList.toggle('do-flip')
-      })
-      flipDivB.addEventListener("click", ()=>{
-        commentDeleter(post.post_id)
+        commentDisplay();
+        commentRemover();
       })
       let newTitle = document.createElement('h2');
       newTitle.className = "postTitle";
@@ -62,16 +64,30 @@ function pageLoad(currentSource) {
       newScoreVal.innerText = `${post.score}`;
       let newUpVote = document.createElement('div');
       newUpVote.className = "upvote";
-      newUpVote.addEventListener("click", ()=> upVote(`${post.post_id}`))
+      newUpVote.addEventListener("click", ()=> {
+        if (newUpVote.className !=="upvoted" && newUpVote.className !=="disabledUp"){
+        upVote(`${post.post_id}`)
+        newUpVote.className = "upvoted"
+        newDownVote.className = "disabledDown"
+        };
+      })
       let newDownVote = document.createElement('div');
       newDownVote.className = "downvote";
-      newDownVote.addEventListener("click", ()=> downVote(`${post.post_id}`));
+      newDownVote.addEventListener("click", ()=> {
+        if (newDownVote.className!=="downvoted" && newDownVote.className !=="disabledDown") {
+        downVote(`${post.post_id}`)
+        newDownVote.className = "downvoted"
+        newUpVote.className = "disabledUp"
+        }
+      
+      })
       let newDelete = document.createElement('button');
       newDelete.className="deleteBtn";
       newDelete.innerText="delete post";
       newDelete.addEventListener("click", ()=> {
         deletePost(`${post.post_id}`)
       })
+
       post_container.appendChild(newDiv);
       newDiv.appendChild(innerCard);
       innerCard.appendChild(frontCard);
@@ -92,20 +108,6 @@ function pageLoad(currentSource) {
       contentDivB.appendChild(newContent)
       backCard.appendChild(flipDivB)
     
-
-
-      // post_container.appendChild(newDiv)
-      // newDiv.appendChild(newScoreDiv);
-      // newDiv.appendChild(contentDiv);
-      // contentDiv.appendChild(newTitle )
-      // newScoreDiv.appendChild(newScoreVal);
-      // newScoreDiv.appendChild(newUpVote);
-      // newScoreDiv.appendChild(newDownVote)
-      // contentDiv.appendChild(newContent);
-      // contentDiv.appendChild(newFooter);
-      // newFooter.appendChild(newUserLink);
-      // newFooter.appendChild(newTime);
-      // newFooter.appendChild(newDelete)
     });
   }
   postRequest.send();
@@ -146,7 +148,6 @@ function upVote (post_id) {
   http.open('PUT', url);
   // http.setRequestHeader("Content-type", "application/json")
   http.send()
-
 }
 
 function downVote (post_id) {
@@ -188,14 +189,59 @@ function deletePost(post_id) {
   pageLoad(currentLink)
 }
 
-function commentLoader(post_id) {
-  let commentDiv = document.createElement('div');
-  commentDiv.id = "commentDiv";
-  document.body.appendChild(commentDiv);
-  alert('it worked!')
+
+
+
+
+const commentContainer = document.getElementById('comments');
+
+function commentDisplay() {
+commentContainer.classList.toggle('comment_container')
 }
 
-function commentDeleter(post_id) {
-  let comments = document.getElementById("commentDiv")
-  comments.parentNode.removeChild(comments)
+function formCreator(post_id){
+  let newForm = document.createElement('form');
+  let newInput = document.createElement('textarea');
+  newInput.setAttribute("placeholder", "Share your thoughts here...")
+  let newSubmit = document.createElement('input');
+  newSubmit.setAttribute("type", "submit")
+  newInput.className="commentBox";
+  commentContainer.appendChild(newForm)
+  newForm.appendChild(newInput)
+  newForm.appendChild(newSubmit)
+
+  newSubmit.addEventListener("click", (e)=> {
+    e.preventDefault(post_id);
+    let comment = newInput.value;
+    let http = new XMLHttpRequest();
+    let URL = "http://localhost:3000/addcomment"
+    http.open("PUT", URL);
+    http.setRequestHeader("Content-Type", "application/json")
+    http.send(JSON.stringify({"content" : `${comment}`, 
+    "post_id" : `${post_id}`}));
+    newInput.value = ''
+  })
+  let commentRequest = new XMLHttpRequest();
+  commentRequest.open('GET', `http://localhost:3000/displaycomments/${post_id}`);
+  commentRequest.onload = function() {
+    let postData = JSON.parse(commentRequest.responseText);
+    postData.forEach(comment => {
+      let commentPost = document.createElement('div');
+      commentPost.className="commentPost";
+      let commentText = document.createElement('div');
+      commentText.className = "commentText"
+      commentText.innerText=comment.comment;
+      commentContainer.appendChild(commentPost);
+      commentPost.appendChild(commentText)
+    })
+    
+  }
+  commentRequest.send();
+
+}
+
+function commentRemover(){
+while (commentContainer.firstChild) {
+  commentContainer.removeChild(commentContainer.firstChild)
+}
 }
