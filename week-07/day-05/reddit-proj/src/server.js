@@ -94,40 +94,66 @@ app.get('/sortByPopDesc', (req, res)=> {
 
 app.put('/upvote/:id', (req, res) => {
   let post_id = req.params.id;
-  conn.query(`UPDATE posts SET score = score + 1 WHERE post_id = ${post_id}`)
-  res.end()
+  conn.query(`UPDATE posts SET score = score + 1 WHERE post_id = ${post_id}`, (err, rows)=> {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    res.send(rows);
+  })
 })
 
 app.put('/downvote/:id', (req, res) => {
   let post_id = req.params.id;
-  conn.query(`UPDATE posts SET score = score - 1 WHERE post_id = ${post_id}`)
-  res.end()
+  conn.query(`UPDATE posts SET score = score - 1 WHERE post_id = ${post_id}`,  (err, rows)=> {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    res.send(rows);
+  })
 })
 
 app.put('/makepost', (req, res)=> {
   let title = req.body.title;
   let content = req.body.content;
   if (title !== '' && content !== '') {
-    conn.query(`insert into posts (post_title, content, user_id) values ('${title}', '${content}', 'anonymous');`)
-  } else {
-    console.log('try again')
-    }
-  res.end()
+    conn.query(`insert into posts (post_title, content, user_id) values ('${title}', '${content}', 'anonymous');`,  (err, rows)=> {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+        return;
+      }
+      res.send(rows);
+    })
+  } 
 })  
 
 app.put('/deletepost/', (req, res)=> {
   let post_id = req.body.id;
-  conn.query(`DELETE from posts WHERE post_id = '${post_id}';`)
-  res.end()
+  conn.query(`DELETE from posts WHERE post_id = '${post_id}';`,  (err, rows)=> {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    res.send(rows);
+  })
 })
 
 app.put('/addcomment', (req, res)=> {
   let content = req.body.content;
   let post_id = req.body.post_id
-  console.log(post_id, content)
-    conn.query(`insert into comments (comment, post_id) values ("${content}", "${post_id}");`)
-    console.log('your comment has been added')
-  res.end();
+    conn.query(`insert into comments (comment, post_id) values ("${content}", "${post_id}");`,  (err, rows)=> {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+        return;
+      }
+      res.send(rows);
+    })
 })
 
 app.get('/displaycomments/:post_id' ,(req, res)=> {
