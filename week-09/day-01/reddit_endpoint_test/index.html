@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Reddit Project</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  </head>
+  <body>
+    <div id="leftSideBar">
+      <div class="login"></div>
+      <div class="submit"></div>
+      <div class="random"></div>
+
+    </div>
+    <div id="centered">
+      <h1>Front Page</h1>
+      <div class="category_sort">
+        <button id="time-desc">Sort by Newest</button>
+        <button id="time-asc">Sort By Oldest</button>
+        <button id="pop-desc">Most Popular</button>
+        <button id="pop-asc">Least Popular</button>
+      </div>
+      <form action="/makepost" method="PUT" id="newPost">
+        <input placeholder="Title" name="title" id="title"/>
+        <input placeholder="Content" name="content" id="content"/>
+        <input type="submit" value="Post"/ id="submit_post">
+      </form>
+    </div>
+
+    <div id="comments">
+  
+    </div>
+    <script src="assets/script.js"></script>
+  </body>
+</html>

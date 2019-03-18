@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+  </head>
+  <body>
+  <h1> Forms</h1>
+  <form class="form-container" method="POST" action="/send">
+    <label>Name:</label>
+    <input type="text" name="username" autofocus required/>
+    <label>E-mail:</label>
+    <input type="email" name="email" required/>
+    <label>Brand:</label>
+    <input type="text" name="brand" required/>
+    <label>Model:</label>
+    <input type="text" name="model" required/>
+    <label>Mileage:</label>
+    <input type="number" name="mileage" step="1000" required>
+    <label>License plate:</label>
+    <input type="text" pattern="[A-Z]{3}-[0-9]{3}" name="license" required/>
+    <label>Color:</label>
+    <input type="color" name="color"/>
+    <p>Please check all that apply:</p>
+    <label for="ac">AC</label>
+    <input type="checkbox" name="extras" value="AC" id="ac" />
+    <label for="fm_radio">FM Radio</label>
+    <input type="checkbox" name="extras" value="FM radio" id="fm_radio"/>
+    <label for="gps">GPS</label>
+    <input type="checkbox" name="extras" value="GPS" id="gps" checked/>
+    <label for="bluetooth">Bluetooth</label>
+    <input type="checkbox" name="extras" value="Bluetooth" id="bluetooth"/>
+    <p>Please select the state of your car:</p>
+    <label>Wrecked</label>
+    <input type="radio" id="wrecked" name="state" value="wrecked"/>
+    <label>Okay</label>
+    <input type="radio" id="okay" name="state" value="okay"/>
+    <label>New</label>
+    <input type="radio" id="new" name="state" value="new"/>
+    <input type="submit" value="sell this!"/>
+   
+  
+  </form>
+  </body>
+</html>
