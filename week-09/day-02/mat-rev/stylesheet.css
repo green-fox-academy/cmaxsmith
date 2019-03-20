@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(orange, gold);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 50px;
+}
+/* all the divs in the container */
+.container > div {
+  background: rgba(245, 245, 245, 0.664);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.container >div:hover {
+  filter: brightness(1.5)
+}
+
+.one {
+  grid-row: 4;
+  grid-column: 1 /span 3;
+  z-index: 2;
+}
+
+.seven {
+  grid-row: 2 / 5;
+  grid-column: 3/4;
+}

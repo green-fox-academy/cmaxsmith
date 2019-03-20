@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  height: 100vh;
+  width: 100vw;
+  grid-template-areas: 
+  "yellow1 yellow2 yellow3 yellow4 yellow5 yellow6 yellow7"
+  "yellow8 green1 green1 green1 green1 green1 yellow9"
+  "yellow10 green1 green1 green1 green1 green1 yellow11"
+  "yellow12 green1 green1 green1 green1 green1  yellow13"
+  "yellow14 green1 green1 green1 green1 green1  yellow15"
+  "yellow16 yellow17 yellow18 yellow19 yellow20 yellow21 yellow22";
+}
+
+.green {
+  background: #51D400;
+  grid-area: green1;
+}
+.yellow1,.yellow2,.yellow3,.yellow4,.yellow5,.yellow6,.yellow7,.yellow8,.yellow9,.yellow10,.yellow11,.yellow12,.yellow13,.yellow14,.yellow15,.yellow16,.yellow17,.yellow18,.yellow19,.yellow20,.yellow21, .yellow22 {
+  background: yellow;
+  height: 100%;
+  width: 100%;  
+  border: solid 2px black;
+}
+
+.yellow1 {
+  grid-area: yellow1;
+}
+
+.yellow2 {
+  grid-area: yellow2;
+}
+.yellow3 {
+  grid-area: yellow3;
+}
+.yellow4 {
+  grid-area: yellow4;
+}
+.yellow5 {
+  grid-area: yellow5;
+}
+.yellow6 {
+  grid-area: yellow6;
+}
+.yellow7 {
+  grid-area: yellow7;
+}
+.yellow8 {
+  grid-area: yellow8;
+}
+.yellow9 {
+  grid-area: yellow9;
+}
+.yellow10 {
+  grid-area: yellow10;
+}
+.yellow11 {
+  grid-area: yellow11;
+}
+.yellow12 {
+  grid-area: yellow12;
+}
+.yellow13 {
+  grid-area: yellow13;
+}
+.yellow14 {
+  grid-area: yellow14;
+}
+.yellow15 {
+  grid-area: yellow15;
+}
+.yellow16 {
+  grid-area: yellow16;
+}
+.yellow17 {
+  grid-area: yellow17;
+}
+.yellow18 {
+  grid-area: yellow18;
+}
+.yellow19 {
+  grid-area: yellow19;
+}
+.yellow20 {
+  grid-area: yellow20;
+}
+.yellow21 {
+  grid-area: yellow21;
+}
+
+.yellow22 {
+  grid-area: yellow22;
+}
+
+
+

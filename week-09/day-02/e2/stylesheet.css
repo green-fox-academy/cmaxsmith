@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #333333;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-gap: 10px;
+}
+
+
+.purple1, .purple2, .purple3, .purple4, .purple5 {
+  background:  #B02AFF;
+  height: 200px;
+
+}
+
+.green {
+  background: #51D400;
+}
+
+.yellow {
+  background: #FFD62A;
+}
+
+.purple1 {
+  grid-row:1 / 4 ;
+  grid-column: 1 / 4 ;
+}
+.purple2 {
+  grid-row: 4/ 7;
+  grid-column: 1 / 4;
+}
+.purple3 {
+  grid-row: 7 / 10 ;
+  grid-column: 1 / 4 ;
+}
+.purple4 {
+  grid-row: 7 / 10;
+  grid-column: 4 / 7;
+}
+.purple5 {
+  grid-row: 7/ 10;
+  grid-column: 7 / 10;
+}
+
+.green {
+  grid-row: 1 / 7;
+  grid-column: 4 / 10;
+}
+
+.yellow {
+  grid-row: 2 / 6;
+  grid-column: 5 / 9;
+  z-index: 1;
+}
+

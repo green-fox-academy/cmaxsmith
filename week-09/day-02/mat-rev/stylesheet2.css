@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(orange, gold);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 50px;
+  grid-template-areas:
+  "one one one"
+  "two three four"
+  "five . seven"
+  "eight eight nine"
+  "six six six"
+}
+
+.container > div {
+  background-color: rgba(245, 245, 245, 0.671);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+  /* display: none; */
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}

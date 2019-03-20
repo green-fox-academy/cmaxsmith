@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 8px;
+  height: 100vh;
+  grid-template-areas: 
+  ". . . . . . . . . ."
+  "purple purple purple purple purple purple purple purple purple purple"
+  ". green1 green1 green1 green1 green2 green2 green2 green2 ."
+  ". green1 green1 green1 green1 green2 green2 green2 green2 ."
+  ". green1 green1 green1 green1 green2 green2 green2 green2 ."
+  ". green3 green3 green3 green3 green4 green4 green5 green5 ."
+  ". green3 green3 green3 green3 green4 green4 green5 green5 ."
+  ". green3 green3 green3 green3 green4 green4 green5 green5 ."
+  " . gray gray gray gray gray gray gray gray ."
+}
+
+
+.purple {
+  background: #B02AFF;
+  grid-area: purple;
+  border-top: solid 5px black;
+}
+
+
+.link {
+  background: #2AEAFF;
+  margin: 5px;
+  height: 50%;
+  width: 20%;
+}
+
+.green1 {
+  background: #51D400;
+  grid-area: green1;
+}
+.green2 {
+  background: #51D400;
+  grid-area: green2;
+}
+.green3 {
+  background: #51D400;
+  grid-area: green3;
+}
+.green4 {
+  background: #51D400;
+  grid-area: green4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.green5 {
+  background: #51D400;
+  grid-area: green5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gray {
+  background: #CCCCCC;
+  grid-area: gray;
+}
+
+.nav {
+  display: flex;
+  background:transparent;
+  z-index: 2;
+  width: 50%;
+  height: 100%;
+  margin-left: 10%;
+  align-items: center;
+}
+
+.red {
+  background:#E90020;
+  height: 75%;
+  width: 75%;
+}
