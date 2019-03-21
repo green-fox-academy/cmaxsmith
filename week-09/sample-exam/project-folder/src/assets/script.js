@@ -1,8 +1,13 @@
 'use strict';
 
 let button = document.querySelector('button')
-button.addEventListener("click", ()=>{
-  bodyCreator().then(object=>postCredentials(object)).then(creds=>postURL(creds))
+button.addEventListener("click", (e)=>{
+  e.preventDefault()
+  bodyCreator()
+    .then(object=>postCredentials(object))
+    .then(creds=>postURL(creds))
+    .then(response=>response.json())
+    .then(myJson=>console.log(myJson));
 })
 
 function postCredentials(data){

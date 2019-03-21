@@ -7,13 +7,9 @@ const getCredentials = {
   },
 }
 
-let object = {
-  "test": "sucesssss"
-}
-
-function putCredentials(data) {
+function postCredentials(data) {
   let object = {
-    method: 'PUT',
+    method: 'POST',
     body: JSON.stringify(data),
     headers: {
       "Content-Type" : "application/json"
@@ -21,15 +17,23 @@ function putCredentials(data) {
   }
   return object
 }
+
+const deleteCredentials = {
+  method: 'DELETE',
+  headers: {
+    "Content-Type" : "application/json"
+  },
+}
+
 function postRequest(data) {
-  fetch('http://localhost:3000/api/questions', putCredentials(data))
+  fetch('http://localhost:3000/api/questions', postCredentials(data))
 }
 
 fetch('http://localhost:3000/api/questions', getCredentials)
   .then(response=>response.json())
-  .then(data=>questionLister(data))
+  .then(data=>questionLister(data));
 
-let table = document.querySelector('table')
+let table = document.querySelector('table');
 function questionLister(data){
   data.forEach((question)=>{
     let newTR = document.createElement('tr');
@@ -37,6 +41,10 @@ function questionLister(data){
     newTDQ.className="question"
     let newTDE = document.createElement('td');
     newTDE.className="deleteBtn"
+    newTDE.addEventListener("click", ()=> {
+      deleteEntry(question.id)
+      window.location.reload();
+    })
     newTDQ.innerText= question.question;
     newTDE.innerText="delete";
     table.appendChild(newTR);
@@ -80,3 +88,7 @@ submit.addEventListener("click", ()=>{
  let data = objectMaker()
  postRequest(data)
 })
+
+function deleteEntry(id){
+  fetch(`http://localhost:3000/api/questions/${id}`, deleteCredentials)
+}

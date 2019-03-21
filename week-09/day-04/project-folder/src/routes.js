@@ -29,14 +29,44 @@ app.get('/questions', (req, res)=>{
 
 //This endpoint should return a random question with its answers.
 app.get('/api/game', (req, res)=> {
-  questionCount.then(numGen).then(index=>
+  questionCount().then(number=>numGen(number)).then(index=>
     conn.query(`SELECT * FROM questions LEFT JOIN answers on questions.id = answers.question_id WHERE questions.id = '${index}';`, (err, rows) => {
       if (err) {
         console.log(err);
         res.status(500).send();
         return;
       }
-      res.send(rows)
+      let object ={
+        "id": rows[0].question_id,
+        "question" : rows[0].question,
+        "answers" : [
+          {
+            "question_id": rows[0].question_id,
+            "id": rows[0].id,
+            "answer": rows[0].answer,
+            "is_correct": rows[0].is_correct
+          },
+          {
+            "question_id": rows[1].question_id,
+            "id": rows[1].id,
+            "answer": rows[1].answer,
+            "is_correct": rows[1].is_correct
+          },
+          {
+            "question_id": rows[2].question_id,
+            "id": rows[2].id,
+            "answer": rows[2].answer,
+            "is_correct": rows[2].is_correct
+          },
+          {
+            "question_id": rows[3].question_id,
+            "id": rows[3].id,
+            "answer": rows[3].answer,
+            "is_correct": rows[3].is_correct
+          },
+        ]
+      }
+      res.send(object)
     })
   )
 });
@@ -49,12 +79,21 @@ app.get('/api/questions', (req, res)=> {
       res.status(500).send();
       return;
     };
-    res.send(rows);
+    let array = []
+    rows.forEach((question)=>{
+      let object = {
+        "id" : question.id,
+        "question" : question.question
+      }
+      array.push(object)
+
+    })
+    res.send(array);
   });
 });
 
 //If you fill the form and click on the submit button, it should add a new question and its answers
-app.put('/api/questions', (req, res)=> {
+app.post('/api/questions', (req, res)=> {
   let question = req.body.question;
   let a1 = req.body.answer_1;
   let a2 = req.body.answer_2;
@@ -62,57 +101,79 @@ app.put('/api/questions', (req, res)=> {
   let a4 = req.body.answer_4;
   let cA = req.body.correct;
   let ansArray = [a1, a2, a3, a4]
-  
-  conn.query(`INSERT INTO questions (question) VALUES ('${question}')`, (err, rows)=>{
+  function isCorrect(answer){
+    if(answer===cA){
+      return 1
+    } else {
+      return 0
+    }
+  }
+  conn.query(`INSERT INTO questions (question) VALUES ("${question}")`, (err, rows)=>{
     if(err){
       console.log(err);
       res.status(500).send();
       return;
     }
-    let newQ = rows.insertId
-    console.log(newQ)
-  })
-  // ansArray.forEach((answer)=>{
-  //   if (answer !== cA) {
-  //     conn.query(`INSERT INTO answers (answer, is_correct, question_id) VALUES ('${answer}', '0', '${question_id}');`);
-  //   } else {
-  //     conn.query(`INSERT INTO answers (answer, is_correct, question_id) VALUES ('${answer}', '1', '${question_id}');`);
-  //   }
-  // })
-})
-
-
-// If you fill the form and click on the submit button, it should add a new question and its answers
-app.delete('/api/questions/:id')
-
-let questionCount = new Promise ((resolve, reject) => 
-  {conn.query(`SELECT * FROM questions`, (err, rows)=> {
-    if (err) {
-      console.log(err);
-      reject (500);
-      return;
-    };
-    resolve (rows.length)
-  });
-})
-
-function numGen(length){
-  let random = Math.floor(Math.random()*(length)+1);
-  return random;}
-
-async function idCounter(question){
-  let id = new Promise((resolve, reject)=> {
-    conn.query(`SELECT id FROM questions WHERE question = '${question}';`, (err, rows)=>{
-      if (err) {
-        console.log(err);
-        reject(500);
-        return;
-      }
-      resolve(rows)
+    let newID = rows.insertId
+    ansArray.forEach((answer)=>{
+        conn.query(`INSERT INTO answers (answer, is_correct, question_id) VALUES ("${answer}", "${isCorrect(answer)}", "${newID}");`);
     })
   })
+  let object = {
+    "question": question,
+    "answers": [
+      {
+        "answer_1": a1,
+        "is_correct": isCorrect(a1),
+      },
+      {
+        "answer_2": a2,
+        "is_correct": isCorrect(a2),
+      },
+      {
+        "answer_3": a3,
+        "is_correct": isCorrect(a3),
+      },
+      {
+        "answer_4": a4,
+        "is_correct": isCorrect(a4),
+      }
+    ]
+  }
+  res.send(object)
+})
+
+// If you fill the form and click on the submit button, it should add a new question and its answers
+app.delete('/api/questions/:id', (req, res)=> {
+  let id = req.params.id;
+  conn.query(`DELETE FROM questions WHERE id='${id}';`)
+  conn.query(`DELETE FROM answers WHERE question_id='${id}';`)
+})
+
+const questionCount = ()=> {
+  return new Promise ((resolve, reject) => 
+    {conn.query(`SELECT * FROM questions`, (err, rows)=> {
+      if (err) {
+        console.log(err);
+        reject (500);
+        return;
+      };
+      let array = [];
+      rows.forEach((question)=>{
+        array.push(question.id)
+      })
+      resolve (array)
+    });
+    }
+  )
 }
-let question1 = "Who played Neo in The Matrix?";
+questionCount()
+
+function numGen(array){
+  let random = Math.floor(Math.random()*(array.length));
+  return array[random]
+}
+
 
 
 module.exports = app

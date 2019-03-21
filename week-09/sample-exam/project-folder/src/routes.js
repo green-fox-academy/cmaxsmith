@@ -30,7 +30,13 @@ app.get('/', (req, res) => {
 // Store the entry in the database
 // It should respond with the stored entry in the following JSON format
 app.post('/api/links', (req, res)=> {
-  console.log(req.body)
+  let url = req.body.url;
+  let alias = req.body.alias
+  let object = {
+    "url" : url,
+    "alias": alias
+  }
+  res.send(object)
 })
 
 

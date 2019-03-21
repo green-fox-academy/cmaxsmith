@@ -25,9 +25,9 @@ function makeAQuestion(data){
   clearQuestion()
   let qBox = document.querySelector('.question_box');
   let qHead = document.createElement('h');
-  qHead.innerText = data[0].question;
+  qHead.innerText = data.question;
   qBox.appendChild(qHead);
-  data.forEach((answer)=> {
+  data.answers.forEach((answer)=> {
     let option = document.createElement('p')
     option.innerText = answer.answer
     if (answerChecker(answer.is_correct)){
@@ -39,7 +39,14 @@ function makeAQuestion(data){
       if (option.className==="correct"){
         scoreNum++;
         score.innerText=scoreNum;
-      } else {alert('incorrectiez')}
+        setTimeout(()=> {
+          callAQuestion()
+        }, 3000)
+      } else {
+        setTimeout(()=>{
+          callAQuestion()
+        },3000)
+      }
     })
     qBox.appendChild(option)
   })
