@@ -9,41 +9,58 @@ const getCredentials = {
 }
 
 
-function makeAQuestion () {
-fetch('http://localhost:3000/api/questions', getCredentials)
+function callAQuestion () {
+fetch('http://localhost:3000/api/game', getCredentials)
   .then(response=>response.json())
-  .then(myJson=>questionSelect(myJson));
+  .then(makeAQuestion)
 }
-
-
-let array = [];
-function questionSelect(data) {
-  function numGen(length){
-    let random = Math.floor(Math.random()*(length)+1);
-    if (array.includes(random)) {
-      numGen(length)
-    } else {
-    array.push(random);
-    return random;}
-  }
-  let index = numGen(data.length)
-  console.log(index)
-
-  // console.log(data[0])
-  // console.log(data[1])
-  // console.log(data[2])
-  // console.log(data[3])
-  // console.log(data[4])
-  // console.log(data[5])
-  // console.log(data[6])
-  // console.log(data[7])
-  // console.log(data[8])
-  // console.log(data[9])
-
-} 
 
 
 let button = document.querySelector('button');
 button.addEventListener("click", ()=>{
-  makeAQuestion()
+  callAQuestion()
 })
+
+function makeAQuestion(data){
+  clearQuestion()
+  let qBox = document.querySelector('.question_box');
+  let qHead = document.createElement('h');
+  qHead.innerText = data[0].question;
+  qBox.appendChild(qHead);
+  data.forEach((answer)=> {
+    let option = document.createElement('p')
+    option.innerText = answer.answer
+    if (answerChecker(answer.is_correct)){
+      option.className="correct";
+    } else {
+      option.className="incorrect";
+    }
+    option.addEventListener("click", ()=>{
+      if (option.className==="correct"){
+        scoreNum++;
+        score.innerText=scoreNum;
+      } else {alert('incorrectiez')}
+    })
+    qBox.appendChild(option)
+  })
+}
+
+function clearQuestion(){
+  let qBox = document.querySelector('.question_box');
+  while (qBox.firstChild) {
+    qBox.removeChild(qBox.firstChild)
+  }
+}
+
+function answerChecker(value){
+  if (value === 0) {
+    return false
+  } else {
+    return true
+  }
+}
+
+let score = document.querySelector('.score_value')
+let scoreNum = Number(score.innerText)  
+
+

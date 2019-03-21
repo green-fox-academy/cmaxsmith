@@ -7,6 +7,24 @@
   </head>
   <body>
     This is the manage questions page
+    <div class="question_list">Manage questions:<br/>
+      <table></table>
+    </div>
+    <div class="newQuestion">Create a new question: <br/>
+      <form>
+        <input type="text" placeholder="Type your question here" name="question"/><br/>
+     
+        <label for="q1">#1<input type="text" name="question_1" placeholder="Type your answer here"></label>
+        <input type="radio" id="q1" name="newAnswer"> <br/>
+        <label for="q2">#2<input type="text" name="question_2" placeholder="Type your answer here"></label>
+        <input type="radio" id="q2" name="newAnswer"> <br/>
+        <label for="q3">#3<input type="text" name="question_3" placeholder="Type your answer here"></label>
+        <input type="radio" id="q3" name="newAnswer"> <br/>
+        <label for="q4">#4<input type="text" name="question_4" placeholder="Type your answer here"></label>
+        <input type="radio" id="q4" name="newAnswer"> <br/>
+        <button id="form_submit">Submit</button>
+      </form>
+    </div>
   <script src="./assets/script2.js"></script>
   </body>
 </html>
