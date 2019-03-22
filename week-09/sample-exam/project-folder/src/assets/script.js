@@ -6,8 +6,6 @@ button.addEventListener("click", (e)=>{
   bodyCreator()
     .then(object=>postCredentials(object))
     .then(creds=>postURL(creds))
-    .then(response=>response.json())
-    .then(myJson=>console.log(myJson));
 })
 
 function postCredentials(data){
@@ -36,6 +34,15 @@ function bodyCreator(){
 
 
 function postURL(credentials){
-  fetch('http://localhost:3000/api/links', credentials)
-    
+  fetch('http://localhost:3000/test', credentials)
+    .then(response=>response.status)
+    //returns the status 
+}
+
+function statusCheck(status) {
+  if (status===200){
+    console.log('working well!')
+  } else {
+    console.log('not working')
+  }
 }
